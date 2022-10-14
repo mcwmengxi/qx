@@ -6,15 +6,21 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "init": "eslint --init",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix"
   },
   "dependencies": {
     "vue": "^3.2.37"
   },
   "devDependencies": {
     "@types/node": "^18.8.5",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
     "@vitejs/plugin-vue": "^3.1.0",
     "cz-git": "^1.3.11",
+    "eslint": "^8.25.0",
+    "eslint-plugin-vue": "^9.6.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vue-tsc": "^0.40.4"
