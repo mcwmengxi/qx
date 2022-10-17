@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
+import { useCounterStore } from '@/stores/modules/counter'
 defineProps<{ msg: string }>()
+const counter = useCounterStore()
+console.log(counter);
 
-const count = ref(0)
 </script>
 
 <template>
 	<h1>{{ msg }}</h1>
-
+	<RouterView />
 	<div class="card">
-		<button type="button" @click="count++">count is {{ count }}</button>
+		<button type="button" @click="counter.increment()">count is {{ counter.count }}</button>
+		<button type="button">double count is {{ counter.doubleCount }}</button>
 		<p>
 			Edit
 			<code>components/HelloWorld.vue</code> to test HMR
