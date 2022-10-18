@@ -11,6 +11,7 @@ module.exports = {
 		'plugin:vue/vue3-essential',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:prettier/recommended',
+		'./.eslintrc-auto-import.json',
 	],
 	overrides: [],
 	// 新增，解析vue文件
@@ -35,5 +36,12 @@ module.exports = {
 		],
 		'@typescript-eslint/no-explicit-any': ['off'],
 		endOfLine: 'off',
+		// 关闭名称校验
+		'vue/multi-word-component-names': [
+			'error',
+			{
+				ignores: ['Home', 'User'], //在这个数组中加入需要忽略的组件名
+			},
+		],
 	},
 }

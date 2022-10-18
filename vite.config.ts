@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 import { resolve } from 'path'
@@ -14,7 +15,7 @@ export default defineConfig({
 			// 自动导入UI库
 			resolvers: [ElementPlusResolver()],
 			// 指定组件位置，默认是src/components
-			dirs: ['src/components'],
+			dirs: ['src/components', 'src/views'],
 			extensions: ['vue'],
 			// 配置文件生成位置
 			dts: 'src/types/components.d.ts',
@@ -28,9 +29,16 @@ export default defineConfig({
 				// '@vueuse/head',
 				// '@vueuse/core',
 			],
+			// eslint报错解决
+			eslintrc: {
+				enabled: false, // Default `false`
+				filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+				globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+			},
 			resolvers: [ElementPlusResolver()],
 			dts: 'src/types/auto-import.d.ts',
 		}),
+		ElementPlus({}),
 	],
 	resolve: {
 		alias: {
