@@ -8,7 +8,7 @@
 		"build": "vue-tsc --noEmit && vite build",
 		"preview": "vite preview",
 		"init": "eslint --init",
-		"lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+		"lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --ignore-path .gitignore --fix",
 		"prettier": "prettier --write ./**/*.{vue,ts,tsx,js,jsx,css,less,scss,json,md}",
 		"prepare": "husky install"
 	},
@@ -19,7 +19,7 @@
 		"vue-router": "^4.1.5"
 	},
 	"devDependencies": {
-		"@types/node": "^18.8.5",
+		"@types/node": "^18.11.2",
 		"@typescript-eslint/eslint-plugin": "^5.40.0",
 		"@typescript-eslint/parser": "^5.40.0",
 		"@vitejs/plugin-vue": "^3.1.0",
