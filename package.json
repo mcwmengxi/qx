@@ -14,6 +14,7 @@
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.0.10",
+		"@vueuse/core": "^9.3.1",
 		"element-plus": "^2.2.18",
 		"pinia": "^2.0.23",
 		"vue": "^3.2.37",
@@ -31,6 +32,7 @@
 		"eslint-plugin-vue": "^9.6.0",
 		"husky": "^8.0.1",
 		"lint-staged": "^13.0.3",
+		"mockjs": "^1.1.0",
 		"prettier": "^2.7.1",
 		"sass": "^1.55.0",
 		"typescript": "^4.6.4",
@@ -39,6 +41,7 @@
 		"unplugin-element-plus": "^0.4.1",
 		"unplugin-vue-components": "^0.22.8",
 		"vite": "^3.1.0",
+		"vite-plugin-mock": "^2.9.6",
 		"vue-tsc": "^0.40.4"
 	},
 	"config": {

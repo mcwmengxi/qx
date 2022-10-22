@@ -1,5 +1,5 @@
 <template>
-	<el-button text @click="open">{{ msg }}</el-button>
+	<el-button type="primary" @click="open">{{ msg }}</el-button>
 </template>
 
 <script lang="ts" setup>
@@ -12,7 +12,7 @@ const open = () => {
 		// if you want to disable its autofocus
 		// autofocus: false,
 		confirmButtonText: 'OK',
-		callback: (action: Action) => {
+		callback: (action: typeof Action) => {
 			ElMessage({
 				type: 'info',
 				message: `action: ${action}`,
