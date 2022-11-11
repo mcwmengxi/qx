@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import type { ConfigEnv } from 'vite'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import ElementPlus from 'unplugin-element-plus/vite'
 import Unocss from 'unocss/vite'
 import { viteMockServe } from 'vite-plugin-mock'
 import vue from '@vitejs/plugin-vue'
@@ -48,10 +47,13 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
 					filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
 					globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
 				},
-				resolvers: [ElementPlusResolver()],
+				resolvers: [
+					ElementPlusResolver({
+						importStyle: 'sass',
+					}),
+				],
 				dts: 'src/types/auto-import.d.ts',
 			}),
-			ElementPlus({}),
 			Unocss(),
 		],
 		resolve: {
