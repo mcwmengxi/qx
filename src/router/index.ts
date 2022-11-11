@@ -27,6 +27,14 @@ const constantRoutes: RouteRecordRaw[] = [
 			title: '测试',
 		},
 	},
+	{
+		path: '/guide',
+		component: () => import('@/views/guide/index.vue'),
+		name: 'Guide',
+		meta: {
+			title: '指南',
+		},
+	},
 ]
 
 const router = createRouter({
