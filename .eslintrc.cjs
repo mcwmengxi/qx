@@ -40,7 +40,15 @@ module.exports = {
 		'vue/multi-word-component-names': [
 			'error',
 			{
-				ignores: ['Home', 'User', 'index'], //在这个数组中加入需要忽略的组件名
+				ignores: [
+					'Home',
+					'User',
+					'index',
+					'toggle',
+					'counter',
+					'localstorage',
+					'mouse',
+				], //在这个数组中加入需要忽略的组件名
 			},
 		],
 	},

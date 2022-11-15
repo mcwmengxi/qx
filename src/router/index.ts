@@ -35,6 +35,14 @@ const constantRoutes: RouteRecordRaw[] = [
 			title: '指南',
 		},
 	},
+	{
+		path: '/composable',
+		component: () => import('@/views/composable-function/index.vue'),
+		name: 'Composable',
+		meta: {
+			title: '可组合函数测试',
+		},
+	},
 ]
 
 const router = createRouter({

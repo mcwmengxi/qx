@@ -9,6 +9,9 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BasicHeader: typeof import('./../components/layouts/BasicHeader.vue')['default']
     BasicSide: typeof import('./../components/layouts/BasicSide.vue')['default']
+    ComposableFunction: typeof import('./../views/composable-function/index.vue')['default']
+    ComposeFunction: typeof import('./../views/compose-function/index.vue')['default']
+    Counter: typeof import('./../views/composable-function/counter.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
@@ -18,9 +21,13 @@ declare module '@vue/runtime-core' {
     Guide: typeof import('./../views/guide/index.vue')['default']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
     Home: typeof import('./../views/Home.vue')['default']
+    Localstorage: typeof import('./../views/composable-function/localstorage.vue')['default']
     Login: typeof import('./../views/login/index.vue')['default']
+    Mouse: typeof import('./../views/composable-function/mouse.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TestElementPlus: typeof import('./../views/TestElementPlus.vue')['default']
+    Toggle: typeof import('./../views/composable-function/toggle.vue')['default']
+    TreeComponent: typeof import('./../views/guide/tree-component/index.vue')['default']
   }
 }
