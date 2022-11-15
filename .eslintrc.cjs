@@ -13,6 +13,9 @@ module.exports = {
 		'plugin:prettier/recommended',
 		'./.eslintrc-auto-import.json',
 	],
+	global: {
+		BASE_URL: true,
+	},
 	overrides: [],
 	// 新增，解析vue文件
 	parser: 'vue-eslint-parser',

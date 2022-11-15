@@ -7,5 +7,5 @@ import 'element-plus/theme-chalk/src/notification.scss'
 import App from './App.vue'
 import router from '@/router'
 import pinia from '@/stores'
-
+import '@/services/global'
 createApp(App).use(pinia).use(router).mount('#app')

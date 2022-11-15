@@ -4,3 +4,8 @@ declare module '*.vue' {
 	const component: DefineComponent<{}, {}, any>
 	export default component
 }
+
+// window全局变量说明
+declare interface Window{
+  BASE_URL: Object
+}
