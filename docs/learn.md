@@ -7,7 +7,6 @@
 ```sh
 pnpm add @types/node -D
 ```
-
 >别名提示
 ```json
 {

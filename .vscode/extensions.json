@@ -1,9 +1,16 @@
 {
-	"recommendations": ["Vue.volar"],
-	"editor.formatOnSave": true, // 开启自动保存
-	"editor.defaultFormatter": "esbenp.prettier-vscode", // 默认格式化工具选择prettier
-	"editor.codeActionsOnSave": {
-		"source.fixAll": false,
-		"source.fixAll.eslint": true
-	}
+  "recommendations": [
+    "christian-kohler.path-intellisense",
+    "vscode-icons-team.vscode-icons",
+    "davidanson.vscode-markdownlint",
+    "stylelint.vscode-stylelint",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "redhat.vscode-yaml",
+    "csstools.postcss",
+    "mikestead.dotenv",
+    "eamodio.gitlens",
+    "Vue.volar"
+  ],
 }

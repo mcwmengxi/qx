@@ -7,10 +7,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+tests/**/coverage/
+yarn.lock
+
 node_modules
 dist
 dist-ssr
 *.local
+
+.eslintcache
+report.html
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -21,3 +28,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+tsconfig.tsbuildinfo

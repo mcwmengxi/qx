@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
+import * as UserService from '@/api/user'
 onMounted(() => {
-	fetch('/api/login', {
-		method: 'post',
+  UserService.login({
+    name: 'admin',
+    password: '123456'
+  }).then((data:any) => {
+    console.log(11,data);
+  })
+	fetch('/login?id=1', {
+    method: 'post',
 		headers: {
 			'content-type': 'application/json',
 		},
