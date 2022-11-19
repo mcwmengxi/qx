@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     Mouse: typeof import('./src/views/composable-function/mouse.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Test: typeof import('./src/components/Icons/src/test.vue')['default']
     TestElementPlus: typeof import('./src/views/TestElementPlus.vue')['default']
     Toggle: typeof import('./src/views/composable-function/toggle.vue')['default']
     TreeComponent: typeof import('./src/views/guide/tree-component/index.vue')['default']

@@ -19,4 +19,5 @@ pnpm add @types/node -D
 	},
 }
 ```
-
+引入svg作为vue组件使用
+`pnpm add vite-svg-loader -D`

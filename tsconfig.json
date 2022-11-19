@@ -17,15 +17,17 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"],
+      "@build/*": ["build/*"],
     },
+    // @types下的所有包会默认被引入
     "types": [
       "node",
       "vite/client",
+      "vite-svg-loader",
       "element-plus/global",
     ],
+    // typeRoots 下面的包会被ts编译器自动包含进来
     "typeRoots": [
       "./node_modules/@types/",
       "./types"
@@ -37,7 +39,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "types/*.d.ts",
-    "mock/*.ts",
+    "mock/*.ts"
   ],
   "exclude": [
     "node_modules",

@@ -1,4 +1,4 @@
-import { h,defineComponent, ref } from "vue";
+import { h,defineComponent, resolveDirective, withDirectives, Directive } from "vue";
 
 export default defineComponent({
   name: "Motion",
@@ -9,12 +9,33 @@ export default defineComponent({
     }
   },
   render() {
-    return h(
+    const { delay } = this
+    const motion = resolveDirective("motion")
+    return withDirectives(h (
       'div',
       {},
       {
-        default: () => [this.$slots.default()]
+        default: () => [this.$slots.default!() ]
       }
-    )
+    ),
+    [
+      [
+        motion as Directive,
+        {
+          initial: {
+            opacity: 0,
+            y: 100,
+          },
+          enter: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              delay
+            }
+          },
+          delay: delay
+        }
+      ]
+    ])
   }
 })

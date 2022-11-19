@@ -1,5 +1,5 @@
 module.exports = {
-  printWidth: 80, // 指定代码换行的行长度
+  printWidth: 140, // 指定代码换行的行长度
   tabWidth: 2,
   useTabs: true, //使用空格代替tab缩进
   singleQuote: true, // 是否使用单引号
