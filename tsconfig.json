@@ -4,17 +4,26 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "lib": [
       "ESNext",
       "DOM"
     ],
-    "skipLibCheck": true,
+
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "strictFunctionTypes": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": false,
+    "incremental": true,
+
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
@@ -43,6 +52,7 @@
   ],
   "exclude": [
     "node_modules",
+    "build",
     "dist",
     "**/*.js",
     "index.html"

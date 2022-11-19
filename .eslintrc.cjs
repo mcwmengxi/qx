@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   // 设置我们的运行环境为浏览器 + es2021 + node ,否则eslint在遇到 Promise，window等全局对象时会报错
   env: {
     browser: true,
@@ -14,9 +15,43 @@ module.exports = {
     './.eslintrc-auto-import.json',
   ],
   global: {
+    // Ref sugar (take 2)
+    $: "readonly",
+    $$: "readonly",
+    $ref: "readonly",
+    $shallowRef: "readonly",
+    $computed: "readonly",
+
     BASE_URL: true,
+    // script setup
+    defineProps: "readonly",
+    defineEmits: "readonly",
+    defineExpose: "readonly",
+    withDefaults: "readonly"
   },
-  overrides: [],
+  overrides: [
+    {
+      files: ["*.ts", "*.vue"],
+      rules: {
+        "no-undef": "off"
+      }
+    },
+    {
+      files: ["*.vue"],
+      parser: "vue-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".vue"],
+        ecmaVersion: "latest",
+        ecmaFeatures: {
+          jsx: true
+        }
+      },
+      rules: {
+        "no-undef": "off"
+      }
+    }
+  ],
   // 新增，解析vue文件
   parser: 'vue-eslint-parser',
   // 支持ts的最新语法
@@ -24,6 +59,10 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     parser: '@typescript-eslint/parser',
+    jsxPragma: "React",
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   // 添加vue和@typescript-eslint插件，增强eslint的能力
   plugins: ['vue', '@typescript-eslint'],
