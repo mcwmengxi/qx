@@ -12,4 +12,13 @@ declare global {
     VITE_PORT: number
     VITE_BASE_URL: string
   }
+  // 压缩类型
+  type ViteCompression =
+  | "none"
+  | "gzip"
+  | "brotli"
+  | "both"
+  | "gzip-clear"
+  | "brotli-clear"
+  | "both-clear";
 }

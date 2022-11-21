@@ -4,6 +4,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 // import Unocss from 'unocss/vite'
 import { viteMockServe } from 'vite-plugin-mock'
 import { cdn } from './cdn'
+import { compressPluginConfig } from './compress'
 import vue from '@vitejs/plugin-vue'
 import legacy from "@vitejs/plugin-legacy";
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -17,6 +18,7 @@ export function getPluginsList(command: string,  VITE_LEGACY: boolean, VITE_CDN:
       localEnabled: command === 'serve',
     }),
     VITE_CDN ? cdn : null,
+    compressPluginConfig(VITE_COMPRESSION),
     Components({
       // 自动导入UI库
       resolvers: [
