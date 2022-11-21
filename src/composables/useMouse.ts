@@ -16,6 +16,6 @@ export default function useMouse() {
 	})
 	return {
 		x,
-		y,
+		y
 	}
 }

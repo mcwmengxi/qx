@@ -1,21 +1,17 @@
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-export interface HttpResponse extends AxiosResponse {
-
-}
-export interface HttpRequestConfig extends AxiosRequestConfig {
-
-}
+export type HttpResponse = AxiosResponse
+export type HttpRequestConfig = AxiosRequestConfig
 export interface HttpError extends AxiosError {
-  isCancelRequest?: boolean;
-  config?: object;
-  response?: object
+	isCancelRequest?: boolean
+	config?: object
+	response?: object
 }
 export type HttpOption = {
-  url: string,
-  method: string,
-  data?: object
-  params?: object,
-  intercept?: boolean,
-  silence?: boolean
+	url: string
+	method: string
+	data?: object
+	params?: object
+	intercept?: boolean
+	silence?: boolean
 }

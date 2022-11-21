@@ -7,14 +7,14 @@ export default defineComponent({
 			'button',
 			{
 				style: {
-					backgroundColor: 'skyblue',
+					backgroundColor: 'skyblue'
 				},
 				onClick(e: Event) {
 					$emit('custom-click')
 				},
-				disabled: $attrs.disabled,
+				disabled: $attrs.disabled
 			},
 			$slots.default()
 		)
-	},
+	}
 })

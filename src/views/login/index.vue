@@ -1,6 +1,6 @@
 <template>
 	<div class="select-none">
-		<div class="wave bg-clip-border"></div>
+		<div class="wave bg-clip-border" />
 		<!-- <img :src="bg" class="wave" /> -->
 
 		<!-- <div class="flex items-center text-sm font-medium my-5 sm:mt-2 sm:mb-4">
@@ -15,16 +15,16 @@
 			<div class="login-box">
 				<div class="login-form shadow-md bg-gray-200 border-green-100">
 					<div id="owl-login" :class="{ 'login-owl': true, password: pwdActive }">
-						<div class="hand"></div>
-						<div class="hand hand-r"></div>
+						<div class="hand" />
+						<div class="hand hand-r" />
 						<div class="arms">
-							<div class="arm"></div>
-							<div class="arm arm-r"></div>
+							<div class="arm" />
+							<div class="arm arm-r" />
 						</div>
 					</div>
 					<el-form ref="loginFormRef" :rules="loginRules" size="large" :model="loginInfo">
 						<div class="img">
-							<owlLoginArm></owlLoginArm>
+							<owlLoginArm />
 							<component :is="toRaw(owlLogin)" />
 						</div>
 						<Motion :delay="100">

@@ -29,10 +29,9 @@ const ListComponent = (props: any, ctx: any) => {
 						// color: 'red',
 						listStyle: 'none',
 						border: '1px solid red',
-						backgroundColor:
-							index == props['active-index'] ? '#ffffff' : '#ccc',
+						backgroundColor: index == props['active-index'] ? '#ffffff' : '#ccc'
 					},
-					onClick: () => handleClick(index),
+					onClick: () => handleClick(index)
 				},
 				item.name
 			)
@@ -42,14 +41,14 @@ const ListComponent = (props: any, ctx: any) => {
 
 const list = [
 	{
-		name: 'John',
+		name: 'John'
 	},
 	{
-		name: 'Doe',
+		name: 'Doe'
 	},
 	{
-		name: 'Smith',
-	},
+		name: 'Smith'
+	}
 ]
 
 const activeIndex = ref(0)

@@ -28,6 +28,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@build/*": ["build/*"],
+      // "/#/*": ["types/*"]
     },
     // @types下的所有包会默认被引入
     "types": [
@@ -47,15 +48,16 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "types/*.d.ts",
-    "mock/*.ts"
+    "types/**/*.d.ts",
+    "build/**/*.ts",
+    "mock/*.ts",
+    "vite.config.ts"
   ],
   "exclude": [
     "node_modules",
-    "build",
     "dist",
     "**/*.js",
-    "index.html"
+    "index.html",
   ],
   "references": [
     {

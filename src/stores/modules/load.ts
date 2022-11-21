@@ -5,7 +5,7 @@ const loadStore = defineStore('load', {
 			requestNum: 0, // 记录请求数量，数量为0再隐藏全局加载样式
 			isLoading: false, // 页面loading
 			isError: false,
-			time: 0, // 用于记录请求时间
+			time: 0 // 用于记录请求时间
 		}
 	},
 	// getters 类似于 computed，可对 state 的值进行二次计算, 数据没有改变的情况下之后会读取缓存
@@ -55,8 +55,8 @@ const loadStore = defineStore('load', {
 				default:
 					break
 			}
-		},
-	},
+		}
+	}
 })
 
 export default loadStore

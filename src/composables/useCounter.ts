@@ -11,10 +11,7 @@ interface UseCounterOptions {
  * 4. 最小值 & 最大值 选项支持
  */
 import { ref, unref } from 'vue'
-export default function useCounter(
-	initialValue = 0,
-	options: UseCounterOptions = {}
-) {
+export default function useCounter(initialValue = 0, options: UseCounterOptions = {}) {
 	const count = ref<number>(initialValue)
 	const { min, max } = options
 	const inc = () => {
@@ -35,6 +32,6 @@ export default function useCounter(
 		count,
 		inc,
 		dec,
-		reset,
+		reset
 	}
 }

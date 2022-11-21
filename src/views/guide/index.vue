@@ -1,9 +1,7 @@
 <template>
 	<el-button type="primary" @click="open">{{ msg }}</el-button>
-	<FunctionalComponent></FunctionalComponent>
-	<RenderFunction :disabled="false" @custom-click="onClick"
-		>my button</RenderFunction
-	>
+	<FunctionalComponent />
+	<RenderFunction :disabled="false" @custom-click="onClick">my button</RenderFunction>
 	<TreeComponent :data="treeData" />
 </template>
 
@@ -24,9 +22,9 @@ const open = () => {
 		callback: (action: typeof Action) => {
 			ElMessage({
 				type: 'info',
-				message: `action: ${action}`,
+				message: `action: ${action}`
 			})
-		},
+		}
 	})
 }
 const onClick = () => {
@@ -40,7 +38,7 @@ const treeData = ref([
 		children: [
 			{
 				key: '1-1',
-				title: 'child 1',
+				title: 'child 1'
 			},
 			{
 				key: '1-2',
@@ -48,15 +46,15 @@ const treeData = ref([
 				children: [
 					{
 						key: '1-2-1',
-						title: 'grandchild 1',
+						title: 'grandchild 1'
 					},
 					{
 						key: '1-2-2',
-						title: 'grandchild 2',
-					},
-				],
-			},
-		],
+						title: 'grandchild 2'
+					}
+				]
+			}
+		]
 	},
 	{
 		key: '2',
@@ -68,19 +66,19 @@ const treeData = ref([
 				children: [
 					{
 						key: '2-1-1',
-						title: 'grandchild 1',
+						title: 'grandchild 1'
 					},
 					{
 						key: '2-1-2',
-						title: 'grandchild 2',
-					},
-				],
+						title: 'grandchild 2'
+					}
+				]
 			},
 			{
 				key: '2-2',
-				title: 'child 2',
-			},
-		],
-	},
+				title: 'child 2'
+			}
+		]
+	}
 ])
 </script>

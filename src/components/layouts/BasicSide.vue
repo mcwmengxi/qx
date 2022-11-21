@@ -1,11 +1,5 @@
 <template>
-	<el-menu
-		default-active="2"
-		class="el-menu-vertical-demo"
-		:collapse="isCollapse"
-		@open="handleOpen"
-		@close="handleClose"
-	>
+	<el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen" @close="handleClose">
 		<el-sub-menu index="1">
 			<template #title>
 				<el-icon><location /></el-icon>
@@ -41,12 +35,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import {
-	Location,
-	Document,
-	Menu as IconMenu,
-	Setting,
-} from '@element-plus/icons-vue'
+import { Location, Document, Menu as IconMenu, Setting } from '@element-plus/icons-vue'
 
 const isCollapse = ref(true)
 const handleOpen = (key: string, keyPath: string[]) => {

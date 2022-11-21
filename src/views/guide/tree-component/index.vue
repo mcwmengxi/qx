@@ -2,7 +2,7 @@
 	<div class="tree" v-for="item in data" :key="item.key">
 		<span class="tree-title">{{ item.title }}</span>
 		<template v-if="item.children && item.children.length">
-			<TreeComponent :data="item.children"></TreeComponent>
+			<TreeComponent :data="item.children" />
 		</template>
 	</div>
 </template>
@@ -19,7 +19,7 @@ defineProps<{ data: TreeData[] }>()
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-	name: 'TreeComponent',
+	name: 'TreeComponent'
 })
 </script>
 <style lang="scss">

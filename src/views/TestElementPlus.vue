@@ -15,9 +15,9 @@ const open = () => {
 		callback: (action: typeof Action) => {
 			ElMessage({
 				type: 'info',
-				message: `action: ${action}`,
+				message: `action: ${action}`
 			})
-		},
+		}
 	})
 }
 </script>

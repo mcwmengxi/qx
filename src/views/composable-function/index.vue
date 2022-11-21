@@ -6,7 +6,7 @@ import Mouse from './mouse.vue'
 </script>
 
 <template>
-	<Toggle></Toggle>
+	<Toggle />
 	<br />
 	<Counter />
 	<br />

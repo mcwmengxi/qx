@@ -1,6 +1,6 @@
 <template>
 	<div class="">home</div>
-	<HelloWorld msg="fgek"></HelloWorld>
+	<HelloWorld msg="fgek" />
 </template>
 
 <script lang="ts" setup>
