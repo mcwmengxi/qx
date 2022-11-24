@@ -3,7 +3,7 @@ import useToggle from '@/composables/useToggle'
 
 // import { useToggle } from '@vueuse/core'
 
-const [state, toggle] = useToggle(false)
+const [state, toggle]: any = useToggle(false)
 </script>
 
 <template>

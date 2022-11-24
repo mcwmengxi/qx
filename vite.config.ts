@@ -60,10 +60,10 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       include: ["pinia", "@vueuse/core", "dayjs"],
     },
 		build: {
-			sourcemap: false,
+      sourcemap: false,
 			// 消除打包大小超过400kb警告
 			chunkSizeWarningLimit: 4000,
-			rollupOptions: {
+      rollupOptions: {
 				input: {
 					index: pathResolve('index.html')
 				},
@@ -71,7 +71,12 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 				output: {
 					chunkFileNames: 'static/js/[name]-[hash].js',
 					entryFileNames: 'static/js/[name]-[hash].js',
-					assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+          manualChunks(id) { //静态资源分拆打包
+            if (id.includes('node_modules')) {
+              return id.toString().split('node_modules/')[1].split('/')[0].toString();
+            }
+          }
 				}
 			}
 		},

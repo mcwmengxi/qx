@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-interface TreeData {
+export interface TreeData {
 	key: string
 	title: string
-	children: TreeData[]
+	children?: Array<any>
 }
 defineProps<{ data: TreeData[] }>()
 </script>

@@ -1,3 +1,5 @@
+import { ref } from 'vue'
+
 export default function useToggle(type: boolean) {
 	const state = ref(type)
 	const toggle = () => {

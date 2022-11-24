@@ -6,11 +6,13 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { Action } from 'element-plus'
 import FunctionalComponent from '@/views/guide/functional-component/index.vue'
 import RenderFunction from '@/views/guide/render-function/render-function'
 import TreeComponent from '@/views/guide/tree-component/index.vue'
+import { TreeData } from './tree-component/index.vue'
 
 const msg = ref('Click to open the Message Box')
 
@@ -19,7 +21,7 @@ const open = () => {
 		// if you want to disable its autofocus
 		// autofocus: false,
 		confirmButtonText: 'OK',
-		callback: (action: typeof Action) => {
+		callback: (action: Action) => {
 			ElMessage({
 				type: 'info',
 				message: `action: ${action}`
@@ -31,7 +33,7 @@ const onClick = () => {
 	console.log('onClick')
 }
 
-const treeData = ref([
+const treeData: any = ref([
 	{
 		key: '1',
 		title: 'Parent 1',

@@ -3,19 +3,32 @@ import AutoImport from 'unplugin-auto-import/vite'
 // import Unocss from 'unocss/vite'
 import { viteMockServe } from 'vite-plugin-mock'
 import { cdn } from './cdn'
+import { viteBuildInfo } from './info'
 import { compressPluginConfig } from './compress'
 import vue from '@vitejs/plugin-vue'
+import { visualizer } from 'rollup-plugin-visualizer'
 import legacy from '@vitejs/plugin-legacy'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import svgLoader from 'vite-svg-loader'
 export function getPluginsList(command: string, VITE_LEGACY: boolean, VITE_CDN: boolean, VITE_COMPRESSION: any) {
+	const prodMock = true
+	const lifecycle = process.env.npm_lifecycle_event
+	// const lifecycle  = "report"
 	return [
 		vue(),
 		viteMockServe({
 			// default
 			mockPath: 'mock',
-			localEnabled: command === 'serve'
+			localEnabled: command === 'serve',
+			// 生产打包开关
+			prodEnabled: command !== 'serve' && prodMock,
+			// 这样可以控制关闭mock的时候不让mock打包到最终代码内
+			injectCode: `
+        import { setupProdMockServer } from './mockProdServer';
+        setupProdMockServer();
+      `
 		}),
+		viteBuildInfo(),
 		VITE_CDN ? cdn : null,
 		compressPluginConfig(VITE_COMPRESSION),
 		Components({
@@ -24,10 +37,10 @@ export function getPluginsList(command: string, VITE_LEGACY: boolean, VITE_CDN: 
 				ElementPlusResolver({
 					importStyle: 'sass'
 				})
-			],
+			]
 			// 指定组件位置，默认是src/components
-			dirs: ['src/components', 'src/views'],
-			extensions: ['vue']
+			// dirs: ['src/components', 'src/views'],
+			// extensions: ['vue']
 			// 配置文件生成位置
 			// dts: 'types/components.d.ts',
 		}),
@@ -64,6 +77,8 @@ export function getPluginsList(command: string, VITE_LEGACY: boolean, VITE_CDN: 
 					targets: ['ie >= 11'],
 					additionalLegacyPolyfills: ['regenerator-runtime/runtime']
 			  })
-			: null
+			: null,
+		// 打包分析
+		lifecycle === 'report' ? visualizer({ open: true, brotliSize: true, filename: 'report.html' }) : null
 	]
 }

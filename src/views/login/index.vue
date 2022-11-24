@@ -39,7 +39,7 @@
 									v-model="loginInfo.password"
 									show-password
 									placeholder="密码"
-									on-change="changePass"
+									@change="updatePass"
 									:prefix-icon="useRenderIcon('ri:lock-fill')"
 								/>
 							</el-form-item>
@@ -65,14 +65,14 @@ import { bg, owlLogin, owlLoginArm } from './helper/static'
 import { loginRules } from './helper/rules'
 import useRenderIcon from '@/components/Icons/src/useRenderIcon'
 import { login } from '@/api/user'
-import data from '@iconify-icons/ep/check'
+
 const pwdActive = ref(false)
 const loginFormRef = ref<FormInstance>()
 const loginInfo = reactive({
 	username: 'admin',
 	password: 'mcw19283899'
 })
-function changePass() {
+const updatePass = (value: string) => {
 	pwdActive.value = true
 }
 const submitForm = async (formEl: FormInstance | undefined) => {

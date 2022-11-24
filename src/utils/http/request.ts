@@ -30,8 +30,10 @@ class Http {
 	private silence: boolean
 	private service: any
 	private lock: any
+	/** 保存当前Axios实例对象 */
+	private static axiosInstance: AxiosInstance = axios.create(defaultConfig)
 	constructor(option: HttpOption) {
-		this.option = option || {}
+		this.option = option
 		// 是否拦截
 		this.intercept = this.option.intercept === true
 		// 是否静默请求

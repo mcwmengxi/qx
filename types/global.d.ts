@@ -2,7 +2,7 @@ export {}
 declare global {
 	interface Window {
 		// Global vue app instance
-		BASE_URL: Object
+		BASE_URL:Record<string, any>
 	}
 	interface ImportMetaEnv extends ViteEnv {
 		__: unknown
