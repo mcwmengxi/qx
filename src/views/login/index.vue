@@ -14,19 +14,21 @@
 		<div class="login-container">
 			<div class="login-box">
 				<div class="login-form shadow-md bg-gray-200 border-green-100">
-					<div id="owl-login" :class="{ 'login-owl': true, password: pwdActive }">
-						<div class="hand" />
-						<div class="hand hand-r" />
-						<div class="arms">
-							<div class="arm" />
-							<div class="arm arm-r" />
-						</div>
-					</div>
 					<el-form ref="loginFormRef" :rules="loginRules" size="large" :model="loginInfo">
-						<div class="img">
+						<Motion :delay="100">
+							<div id="owl-login" :class="{ password: pwdActive }">
+								<div class="hand" />
+								<div class="hand hand-r" />
+								<div class="arms">
+									<div class="arm" />
+									<div class="arm arm-r" />
+								</div>
+							</div>
+						</Motion>
+						<!-- <div class="img">
 							<owlLoginArm />
 							<component :is="toRaw(owlLogin)" />
-						</div>
+						</div> -->
 						<Motion :delay="100">
 							<el-form-item prop="username">
 								<el-input clearable v-model="loginInfo.username" placeholder="用户名" :prefix-icon="useRenderIcon('ri:user-3-fill')" />
@@ -39,6 +41,8 @@
 									v-model="loginInfo.password"
 									show-password
 									placeholder="密码"
+									@focus="pwdActive = true"
+									@blur="pwdActive = false"
 									@change="updatePass"
 									:prefix-icon="useRenderIcon('ri:lock-fill')"
 								/>
@@ -102,9 +106,9 @@ const resetForm = (formEl: FormInstance | undefined) => {
 #owl-login {
 	width: 211px;
 	height: 108px;
-	background-image: url(../../assets/owl-login.png);
+	background-image: url(../../assets/images/bg/owl-login.svg);
 	position: absolute;
-	top: -100px;
+	top: -126px;
 	left: 50%;
 	margin-left: -111px;
 
@@ -147,7 +151,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 	position: absolute;
 	left: 20px;
 	top: 40px;
-	background-image: url(../../assets/owl-login-arm.png);
+	background-image: url(../../assets/images/bg/owl-login-arm.svg);
 	transition: 0.3s ease-out;
 	transform: rotate(-20deg);
 }
@@ -160,7 +164,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 	(min-resolution: 1.5dppx) {
 	#login #owl-login .arms .arm,
 	#register #owl-login .arms .arm {
-		background-image: url(../../assets/owl-login-arm.png);
+		background-image: url(../../assets/images/bg/owl-login-arm.svg);
 		background-size: 40px 65px;
 	}
 }

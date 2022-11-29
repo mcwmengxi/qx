@@ -41,6 +41,11 @@
 
 .login-form {
 	width: 380px;
+  max-width: 380px;
+  margin: 200px auto 0;
+  position: relative;
+  background: #fff;
+  padding: 26px;
 }
 @media screen and (max-width: 968px) {
 	.wave {

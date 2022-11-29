@@ -9,9 +9,17 @@
 	<br />
 	<!-- <WatchFamily /> -->
 	<br />
-	<EffectScope />
+	<!-- <EffectScope /> -->
 	<br />
-	<CustomRef />
+	<!-- <CustomRef /> -->
+	<br />
+	<!-- <Capitalize /> -->
+	<!-- <VFocus /> -->
+	<!-- <VDebounceClick /> -->
+	<!-- <VActiveStyle /> -->
+	<!-- <VOhModel /> -->
+	<hr />
+	<Until />
 </template>
 
 <script lang="ts" setup>
@@ -27,7 +35,12 @@ import WritableComputed from './writable-computed/writable-computed.vue'
 import WatchFamily from './watch-family/watch-family.vue'
 import EffectScope from './effect-scope/effect-scope.vue'
 import CustomRef from './custom-ref/custom-ref.vue'
-
+import Capitalize from './directives/capitalize.vue'
+import VFocus from './directives/v-focus.vue'
+import VDebounceClick from './directives/v-debounce-click.vue'
+import VActiveStyle from './directives/v-active-style.vue'
+import VOhModel from './directives/v-oh-model.vue'
+import Until from './until/until.vue'
 const msg = ref('Click to open the Message Box')
 
 const open = () => {
