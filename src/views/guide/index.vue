@@ -1,8 +1,17 @@
 <template>
 	<el-button type="primary" @click="open">{{ msg }}</el-button>
-	<FunctionalComponent />
-	<RenderFunction :disabled="false" @custom-click="onClick">my button</RenderFunction>
-	<TreeComponent :data="treeData" />
+	<!-- <FunctionalComponent /> -->
+	<!-- <RenderFunction :disabled="false" @custom-click="onClick">my button</RenderFunction> -->
+	<!-- <TreeComponent :data="treeData" /> -->
+	<!-- <RefFamily /> -->
+	<br />
+	<!-- <WritableComputed /> -->
+	<br />
+	<!-- <WatchFamily /> -->
+	<br />
+	<EffectScope />
+	<br />
+	<CustomRef />
 </template>
 
 <script lang="ts" setup>
@@ -13,6 +22,11 @@ import FunctionalComponent from '@/views/guide/functional-component/index.vue'
 import RenderFunction from '@/views/guide/render-function/render-function'
 import TreeComponent from '@/views/guide/tree-component/index.vue'
 import { TreeData } from './tree-component/index.vue'
+import RefFamily from './ref-family/ref-family.vue'
+import WritableComputed from './writable-computed/writable-computed.vue'
+import WatchFamily from './watch-family/watch-family.vue'
+import EffectScope from './effect-scope/effect-scope.vue'
+import CustomRef from './custom-ref/custom-ref.vue'
 
 const msg = ref('Click to open the Message Box')
 
