@@ -37,11 +37,12 @@ export function getPluginsList(command: string, VITE_LEGACY: boolean, VITE_CDN: 
 				ElementPlusResolver({
 					importStyle: 'sass'
 				})
-			]
+			],
 			// 指定组件位置，默认是src/components
 			// dirs: ['src/components', 'src/views'],
 			// extensions: ['vue']
 			// 配置文件生成位置
+			dts: false // 显式关闭
 			// dts: 'types/components.d.ts',
 		}),
 		AutoImport({
@@ -54,16 +55,17 @@ export function getPluginsList(command: string, VITE_LEGACY: boolean, VITE_CDN: 
 			// '@vueuse/core',
 			// ],
 			// eslint报错解决
-			// eslintrc: {
-			//   enabled: false, // Default `false`
-			//   filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-			//   globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
-			// },
+			eslintrc: {
+				enabled: false, // Default `false`
+				filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+				globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+			},
 			resolvers: [
 				ElementPlusResolver({
 					importStyle: 'sass'
 				})
-			]
+			],
+			dts: false // 显式关闭
 			// dts: 'types/auto-import.d.ts',
 		}),
 		// Unocss(),
