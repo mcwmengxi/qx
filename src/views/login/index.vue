@@ -1,5 +1,9 @@
 <template>
 	<div class="select-none">
+		<div class="flex-c absolute right-5 top-3">
+			<!-- 主题 -->
+			<!-- <el-switch v-model="dataTheme" inline-prompt :active-icon="dayIcon" :inactive-icon="darkIcon" @change="dataThemeChange" /> -->
+		</div>
 		<div class="wave bg-clip-border" />
 		<!-- <img :src="bg" class="wave" /> -->
 
@@ -65,13 +69,16 @@
 
 <script setup lang="ts">
 import { ElMessage, FormInstance } from 'element-plus'
-import { reactive, ref, toRaw } from 'vue'
+import { reactive, ref, toRaw, onMounted, onBeforeUnmount } from 'vue'
 import Motion from './helper/motion'
 import { bg, owlLogin, owlLoginArm } from './helper/static'
 import { loginRules } from './helper/rules'
 import useRenderIcon from '@/components/Icons/src/useRenderIcon'
 import userStore from '@/stores/modules/user'
 import router from '@/router'
+
+import dayIcon from '@/assets/svg/day.svg?component'
+import darkIcon from '@/assets/svg/dark.svg?component'
 
 const pwdActive = ref(false)
 const loading = ref(false)
@@ -84,6 +91,21 @@ const loginInfo = reactive({
 const updatePass = (value: string) => {
 	pwdActive.value = true
 }
+
+/** 使用公共函数，避免`removeEventListener`失效 */
+function onkeypress({ code }: KeyboardEvent) {
+	if (code === 'Enter') {
+		submitForm(loginFormRef.value)
+	}
+}
+
+onMounted(() => {
+	window.document.addEventListener('keypress', onkeypress)
+})
+
+onBeforeUnmount(() => {
+	window.document.removeEventListener('keypress', onkeypress)
+})
 const submitForm = async (formEl: FormInstance | undefined) => {
 	if (!formEl) return
 	loading.value = true
