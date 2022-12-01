@@ -31,3 +31,8 @@ export interface HttpAxiosError extends AxiosError {
   config: HttpAxiosRequestConfig,
   response: HttpAxiosResponse
 }
+
+export type RequestMethods = Extract<
+  Method,
+  "get" | "post" | "put" | "delete" | "patch" | "option" | "head"
+>;

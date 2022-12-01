@@ -55,7 +55,9 @@ export default [
 						roles: ['admin'],
 						accessToken: 'eyJhbGciOiJIUzUxMiJ9.admin',
 						refreshToken: 'eyJhbGciOiJIUzUxMiJ9.adminRefresh',
-						expires: '2023/10/30 00:00:00'
+						// expires: '2023/10/30 00:00:00'
+						expires: Date.parse('2022/12/07 00:00:00')
+						// expires: Date.now() + 86400000 * 7
 					}
 				}
 			} else {
@@ -67,7 +69,8 @@ export default [
 						roles: ['admin'],
 						accessToken: 'eyJhbGciOiJIUzUxMiJ9.admin',
 						refreshToken: 'eyJhbGciOiJIUzUxMiJ9.adminRefresh',
-						expires: '2023/10/30 00:00:00'
+						// expires: Date.now() + 86400000 * 7
+						expires: Date.parse('2022/12/07 00:00:00')
 					}
 				}
 			}

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { login } from '@/api/user'
+import { login, refreshToken } from '@/api/user'
 import { removeToken, setToken, StorageSession, SessionKey } from '@/utils/auth'
 import router from '@/router'
 const userStore = defineStore('user', {
@@ -30,6 +30,19 @@ const userStore = defineStore('user', {
 						setToken(result.data)
 					})
 					.catch((err: any) => {
+						reject(err)
+					})
+			})
+		},
+		// 刷新token
+		async autoRefreshToken(data) {
+			return new Promise((resolve, reject) => {
+				refreshToken(data)
+					.then(result => {
+						resolve(result)
+						setToken(result.data)
+					})
+					.catch(err => {
 						reject(err)
 					})
 			})

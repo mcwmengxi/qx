@@ -69,7 +69,20 @@ const constantRoutes: RouteRecordRaw[] = [
 
 const router: Router = createRouter({
 	history: createWebHashHistory(),
-	routes: constantRoutes.concat(...routes)
+	routes: constantRoutes.concat(...routes),
+	strict: true,
+	scrollBehavior(to, from, savedPosition) {
+		return new Promise(resolve => {
+			if (savedPosition) {
+				return savedPosition
+			} else {
+				if (from.meta.saveSrollTop) {
+					const top: number = document.documentElement.scrollTop || document.body.scrollTop
+					resolve({ left: 0, top })
+				}
+			}
+		})
+	}
 })
 
 export default router
