@@ -13,5 +13,21 @@ export type HttpOption = {
 	data?: object
 	params?: object
 	intercept?: boolean
-	silence?: boolean
+  silence?: boolean
+  errorSilence?: boolean
+}
+
+export interface HttpAxiosRequestConfig extends AxiosRequestConfig {
+  beforeRequestCallback?: (request: HttpRequestConfig) => void;
+  beforeResponseCallback?: (response: HttpResponse) => void;
+  errorSilence?: boolean
+}
+
+export interface HttpAxiosResponse extends AxiosResponse {
+  config: HttpAxiosRequestConfig;
+}
+export interface HttpAxiosError extends AxiosError {
+  isCancelRequest?: boolean;
+  config: HttpAxiosRequestConfig,
+  response: HttpAxiosResponse
 }

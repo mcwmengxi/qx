@@ -22,7 +22,8 @@ app.component('IconifyOfflineIcon', IconifyOfflineIcon)
 app.component('IconifyOnlineIcon', IconifyOnlineIcon)
 app.component('BackTop', BackTop)
 app.component('ElementPlusIcon', ElementPlusIcon)
-
+app.use(pinia)
+app.use(router)
 app.use(MotionPlugin)
 app.use(Storage, {
 	// nameSpace: "test_",
@@ -31,4 +32,4 @@ app.use(Storage, {
 		starValue: Storage.getData('starValue') ?? 1
 	}
 })
-app.use(pinia).use(router).mount('#app')
+app.mount('#app')

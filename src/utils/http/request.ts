@@ -2,9 +2,9 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, CustomParamsSeria
 import { ElMessage } from 'element-plus'
 import pinia from '@/stores'
 import loadStore from '@/stores/modules/load'
-import { type } from 'os'
 import { stringify } from 'qs'
-import { HttpError, HttpOption } from './types'
+import NProgress from '@/plugins/nprogress'
+import { HttpError, HttpOption, HttpAxiosRequestConfig, HttpAxiosResponse, HttpAxiosError } from './types'
 
 const $loadStore = loadStore(pinia)
 
@@ -28,16 +28,21 @@ class Http {
 	private option: HttpOption
 	private intercept: boolean
 	private silence: boolean
+	private errorSilence: boolean
 	private service: any
 	private lock: any
+	/** 初始化配置对象 */
+	private static initConfig: HttpAxiosRequestConfig = {}
 	/** 保存当前Axios实例对象 */
 	private static axiosInstance: AxiosInstance = axios.create(defaultConfig)
+
 	constructor(option: HttpOption) {
 		this.option = option
 		// 是否拦截
 		this.intercept = this.option.intercept === true
 		// 是否静默请求
 		this.silence = this.option.silence === true
+		this.errorSilence = this.option.errorSilence ?? false
 		// 注册axios
 		this.init()
 		return this.connect()
@@ -50,12 +55,49 @@ class Http {
 			$loadStore.requestHandle('start')
 		}
 		this.service = axios.create(defaultConfig)
+		this.serviceInterceptorsRequest()
 		this.serviceInterceptorsResponse()
 	}
-	// 拦截请求
+	// 请求拦截
+	private serviceInterceptorsRequest() {
+		this.service.interceptors.request.use(
+			(config: HttpAxiosRequestConfig) => {
+				// 开启进度条动画
+				NProgress.start()
+				// 优先判断post/get等方法是否传入回掉，否则执行初始化设置等回掉
+				if (typeof config.beforeRequestCallback === 'function') {
+					config.beforeRequestCallback(config)
+					return config
+				}
+				if (Http.initConfig.beforeRequestCallback) {
+					Http.initConfig.beforeRequestCallback(config)
+					return config
+				}
+				console.log('test', config)
+
+				return config
+			},
+			error => {
+				return Promise.reject(error)
+			}
+		)
+	}
+	// 响应拦截
 	private serviceInterceptorsResponse() {
 		this.service.interceptors.response.use(
-			(response: AxiosRequestConfig) => {
+			(response: HttpAxiosResponse) => {
+				const $config = response.config
+				// 关闭进度条动画
+				NProgress.done()
+				// 优先判断post/get等方法是否传入回掉，否则执行初始化设置等回掉
+				if (typeof $config.beforeResponseCallback === 'function') {
+					$config.beforeResponseCallback(response)
+					return response.data
+				}
+				if (Http.initConfig.beforeResponseCallback) {
+					Http.initConfig.beforeResponseCallback(response)
+					return response.data
+				}
 				this.stopConnectStatus()
 				if (this.intercept) {
 					console.log(response)
@@ -67,7 +109,12 @@ class Http {
 				}
 				return response.data
 			},
-			(error: any) => {
+			(error: HttpAxiosError) => {
+				const $error = error
+				$error.isCancelRequest = axios.isCancel($error)
+				// 关闭进度条动画
+				NProgress.done()
+
 				this.stopConnectStatus()
 				// 如果接口是静默处理错误信息，则直接将错误信息全部返回出去
 				if (error.config.errorSilence) {
@@ -93,6 +140,7 @@ class Http {
 						error.response && error.response.data && error.response.data.content ? error.response.data.content : error.message
 					)
 				}
+				// 所有的响应异常 区分来源为取消请求/非取消请求
 				return Promise.reject(error)
 			}
 		)

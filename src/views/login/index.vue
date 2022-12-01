@@ -50,7 +50,9 @@
 						</Motion>
 						<Motion :delay="250">
 							<el-form-item>
-								<el-button type="primary" @click="submitForm(loginFormRef)">登录</el-button>
+								<el-button class="w-full mt-4" size="default" type="primary" :loading="loading" @click="submitForm(loginFormRef)"
+									>登录</el-button
+								>
 								<el-button @click="resetForm(loginFormRef)">重置</el-button>
 							</el-form-item>
 						</Motion>
@@ -68,9 +70,12 @@ import Motion from './helper/motion'
 import { bg, owlLogin, owlLoginArm } from './helper/static'
 import { loginRules } from './helper/rules'
 import useRenderIcon from '@/components/Icons/src/useRenderIcon'
-import { login } from '@/api/user'
+import userStore from '@/stores/modules/user'
+import router from '@/router'
 
 const pwdActive = ref(false)
+const loading = ref(false)
+const $user = userStore()
 const loginFormRef = ref<FormInstance>()
 const loginInfo = reactive({
 	username: 'admin',
@@ -81,15 +86,24 @@ const updatePass = (value: string) => {
 }
 const submitForm = async (formEl: FormInstance | undefined) => {
 	if (!formEl) return
+	loading.value = true
 	await formEl.validate((valid: any, fields: any) => {
 		if (valid) {
 			console.log('submit!', valid, formEl)
-			login(toRaw(loginInfo)).then((data: any) => {
-				console.log('登录成功', data)
-				ElMessage.success('登录成功')
-			})
+			$user
+				.loginByUserName(toRaw(loginInfo))
+				.then((data: any) => {
+					console.log('登录成功', data)
+					router.push('/')
+					ElMessage.success('登录成功')
+				})
+				.finally(() => {
+					loading.value = false
+				})
 		} else {
+			loading.value = false
 			console.log('error submit!', fields)
+			return fields
 		}
 	})
 }
