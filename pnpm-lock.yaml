@@ -4,6 +4,7 @@ specifiers:
   '@element-plus/icons-vue': ^2.0.10
   '@iconify-icons/ep': ^1.2.9
   '@iconify/vue': ^4.0.0
+  '@types/lodash-es': ^4.17.6
   '@types/node': ^18.11.2
   '@types/nprogress': ^0.2.0
   '@types/qs': ^6.9.7
@@ -27,6 +28,8 @@ specifiers:
   husky: ^8.0.1
   js-cookie: ^3.0.1
   lint-staged: ^13.0.3
+  lodash-es: ^4.17.21
+  lodash-unified: ^1.0.3
   mockjs: ^1.1.0
   nprogress: ^0.2.0
   picocolors: ^1.0.0
@@ -60,6 +63,8 @@ dependencies:
   axios: 1.1.3
   element-plus: 2.2.18_vue@3.2.40
   js-cookie: 3.0.1
+  lodash-es: 4.17.21
+  lodash-unified: 1.0.3_6vt5du6ay2thm2pqhl32dksnvu
   nprogress: 0.2.0
   pinia: 2.0.27_bfjwoga25wxjazzogo7o372nwq
   qs: 6.11.0
@@ -69,6 +74,7 @@ dependencies:
 devDependencies:
   '@iconify-icons/ep': 1.2.9
   '@iconify/vue': 4.0.0_vue@3.2.40
+  '@types/lodash-es': 4.17.6
   '@types/node': 18.11.2
   '@types/nprogress': 0.2.0
   '@types/qs': 6.9.7
@@ -410,11 +416,9 @@ packages:
     resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
     dependencies:
       '@types/lodash': 4.14.186
-    dev: false
 
   /@types/lodash/4.14.186:
     resolution: {integrity: sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==}
-    dev: false
 
   /@types/mockjs/1.0.7:
     resolution: {integrity: sha512-OCxXz6hEaJOVpRwuJMiVY5a6LtJcih+br9gwB/Q8ooOBikvk5FpBQ31OlNimXo3EqKha1Z7PFBni+q9m+8NCWg==}
@@ -1730,7 +1734,7 @@ packages:
       escape-html: 1.0.3
       lodash: 4.17.21
       lodash-es: 4.17.21
-      lodash-unified: 1.0.2_3ib2ivapxullxkx3xftsimdk7u
+      lodash-unified: 1.0.3_3ib2ivapxullxkx3xftsimdk7u
       memoize-one: 6.0.0
       normalize-wheel-es: 1.2.0
       vue: 3.2.40
@@ -2680,8 +2684,8 @@ packages:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
-  /lodash-unified/1.0.2_3ib2ivapxullxkx3xftsimdk7u:
-    resolution: {integrity: sha512-OGbEy+1P+UT26CYi4opY4gebD8cWRDxAT6MAObIVQMiqYdxZr1g3QHWCToVsm31x2NkLS4K3+MC2qInaRMa39g==}
+  /lodash-unified/1.0.3_3ib2ivapxullxkx3xftsimdk7u:
+    resolution: {integrity: sha512-WK9qSozxXOD7ZJQlpSqOT+om2ZfcT4yO+03FuzAHD0wF6S0l0090LRPDx3vhTTLZ8cFKpBn+IOcVXK6qOcIlfQ==}
     peerDependencies:
       '@types/lodash-es': '*'
       lodash: '*'
@@ -2689,6 +2693,17 @@ packages:
     dependencies:
       '@types/lodash-es': 4.17.6
       lodash: 4.17.21
+      lodash-es: 4.17.21
+    dev: false
+
+  /lodash-unified/1.0.3_6vt5du6ay2thm2pqhl32dksnvu:
+    resolution: {integrity: sha512-WK9qSozxXOD7ZJQlpSqOT+om2ZfcT4yO+03FuzAHD0wF6S0l0090LRPDx3vhTTLZ8cFKpBn+IOcVXK6qOcIlfQ==}
+    peerDependencies:
+      '@types/lodash-es': '*'
+      lodash: '*'
+      lodash-es: '*'
+    dependencies:
+      '@types/lodash-es': 4.17.6
       lodash-es: 4.17.21
     dev: false
 

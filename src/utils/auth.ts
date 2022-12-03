@@ -72,7 +72,7 @@ export const formatToken = (token: string): string => {
 }
 
 export class StorageSession {
-	static getItem(key) {
+	static getItem(key: string): DataInfo<number> {
 		return JSON.parse(sessionStorage.getItem(key))
 	}
 	static setItem(key, val) {

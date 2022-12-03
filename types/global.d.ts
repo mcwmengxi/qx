@@ -1,4 +1,7 @@
-export {}
+import { type RouteLocationNormalized } from "vue-router"
+
+export { }
+
 declare global {
 	interface Window {
 		// Global vue app instance
@@ -111,5 +114,47 @@ declare global {
     };
     /** 子路由配置项 */
     children?: Array<RouteChildrenConfigsTable>;
+  }
+  /**
+   * `src/router` 文件夹里的类型声明
+   */
+  interface toRouteType extends RouteLocationNormalized {
+    meta: {
+      roles: Array<string>;
+      keepAlive?: boolean;
+      dynamicLevel?: string;
+    };
+  }
+
+  /**
+ * 对应 `public/serverConfig.json` 文件的类型声明
+ */
+  interface ServerConfigs {
+    Version?: string;
+    Title?: string;
+    FixedHeader?: boolean;
+    HiddenSideBar?: boolean;
+    MultiTagsCache?: boolean;
+    KeepAlive?: boolean;
+    Locale?: string;
+    Layout?: string;
+    Theme?: string;
+    DarkMode?: boolean;
+    Grey?: boolean;
+    Weak?: boolean;
+    HideTabs?: boolean;
+    SidebarStatus?: boolean;
+    EpThemeColor?: string;
+    ShowLogo?: boolean;
+    ShowModel?: string;
+    MenuArrowIconNoTransition?: boolean;
+    MapConfigure?: {
+      amapKey?: string;
+      options: {
+        resizeEnable?: boolean;
+        center?: number[];
+        zoom?: number;
+      };
+    };
   }
 }

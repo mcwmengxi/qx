@@ -13,7 +13,8 @@ export default {
 			component: () => import('@/views/error/403.vue'),
 			meta: {
 				title: '403'
-			}
+			},
+			children: []
 		},
 		{
 			path: '/error/404',

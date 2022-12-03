@@ -15,6 +15,7 @@ import { MotionPlugin } from '@vueuse/motion'
 import Storage from './plugins/storage'
 // 全局注册图标库组件
 import { FontIcon, IconifyOfflineIcon, IconifyOnlineIcon, BackTop, ElementPlusIcon } from './components/Icons'
+import { getServerConfig } from './config'
 
 const app = createApp(App)
 app.component('FontIcon', FontIcon)
@@ -22,14 +23,18 @@ app.component('IconifyOfflineIcon', IconifyOfflineIcon)
 app.component('IconifyOnlineIcon', IconifyOnlineIcon)
 app.component('BackTop', BackTop)
 app.component('ElementPlusIcon', ElementPlusIcon)
-app.use(pinia)
-app.use(router)
-app.use(MotionPlugin)
-app.use(Storage, {
-	// nameSpace: "test_",
-	memory: {
-		// starValue: Storage.getData("starValue", "test_") ?? 1
-		starValue: Storage.getData('starValue') ?? 1
-	}
+
+getServerConfig(app).then(async config => {
+	app.use(router)
+	await router.isReady()
+	app.use(pinia)
+	app.use(MotionPlugin)
+	app.use(Storage, {
+		// nameSpace: "test_",
+		memory: {
+			// starValue: Storage.getData("starValue", "test_") ?? 1
+			starValue: Storage.getData('starValue') ?? 1
+		}
+	})
+	app.mount('#app')
 })
-app.mount('#app')
