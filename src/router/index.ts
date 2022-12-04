@@ -78,28 +78,32 @@ router.beforeEach((to: toRouteType, form, next) => {
 	function toCorrectRoute() {
 		whiteList.includes(to.fullPath) ? next(form.fullPath) : next()
 	}
-	console.log('---------', userInfo, to.meta?.roles)
+	console.log('userInfo', userInfo, to.meta?.roles)
 	if (userInfo) {
 		// 无权限跳转403页面
 		if (to.meta?.roles && !isOneOfArray(to.meta?.roles, userInfo.roles)) {
 			next({ path: '/error/403' })
 		}
-
 		if (form?.name) {
 			// name为超链接
 			if (externalLink) {
 				openLink(form.name as string)
+				NProgress.done()
 			} else {
 				toCorrectRoute()
 			}
 		} else {
 			// 刷新
 			if ($permission.wholeMenus.length === 0 && to.path !== 'login') {
-				initRouter()
+				initRouter().then((router: Router) => {
+					router.push(to.fullPath)
+				})
+				console.log('whiteList.includes(to.fullPath)', whiteList.includes(to.fullPath))
+				toCorrectRoute()
 			}
 		}
 	} else {
-		debugger
+		// debugger
 		if (to.path !== 'login') {
 			if (whiteList.indexOf(to.path) !== -1) {
 				// 白名单
