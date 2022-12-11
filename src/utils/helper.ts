@@ -25,3 +25,49 @@ export const openLink = (url: string, target: Target = '_blank') => {
 	ele.click()
 	ele.remove()
 }
+
+/**
+ * @description 判断两者是否相等
+ * @param a 前者
+ * @param b 后者
+ * @returns `boolean`
+ */
+export function isEqual(t, n) {
+	const e = Object.prototype.toString.call(t)
+	return e !== Object.prototype.toString.call(n)
+		? false
+		: e === '[object Object]'
+		? isEqualObject(t, n)
+		: e === '[object Array]'
+		? isEqualArray(t, n)
+		: e === '[object Function]'
+		? t === n
+			? true
+			: t.toString() === n.toString()
+		: t === n
+}
+/**
+ * @description 判断两个对象是否相等
+ * @param obj 前一个对象
+ * @param other 后一个对象
+ * @returns `boolean`
+ */
+function isEqualObject(obj: Record<string, unknown> | undefined, other: Record<string, unknown> | undefined) {
+	if (!obj || !other || obj.length !== other.length) return false
+	for (const key of Object.keys(obj)) if (!isEqual(obj[key], other[key])) return false
+	return true
+}
+/**
+ * @description 判断两个数组是否相等
+ * @param arr 前一个数组
+ * @param other 后一个数组
+ * @returns `boolean`
+ */
+function isEqualArray(arr: Array<unknown> | unknown, other: Array<unknown> | unknown) {
+	if (!arr || !other) return false
+	const { length: arrLen } = arr as Array<unknown>
+	const { length: otherLen } = other as Array<unknown>
+	if (arrLen !== otherLen) return false
+	for (let r = 0; r < arrLen; r++) if (!isEqual(arr[r], other[r])) return false
+	return true
+}

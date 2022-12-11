@@ -6,8 +6,10 @@
 import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { Action } from 'element-plus'
+import { getBrowserInfo } from '@/utils/deviceDetection'
 const msg = ref('Click to open the Message Box')
 
+getBrowserInfo()
 const open = () => {
 	ElMessageBox.alert('This is a message', 'Title', {
 		// if you want to disable its autofocus

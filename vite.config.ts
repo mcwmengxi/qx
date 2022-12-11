@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv, UserConfigExport } from 'vite'
 import type { ConfigEnv } from 'vite'
 import { getPluginsList } from './build/plugins'
+import { exclude, include } from './build/optimize'
 import { warpperEnv } from './build'
 import pkg from './package.json'
 import { resolve } from 'path'
@@ -51,7 +52,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 			proxy: {}
 		},
 		optimizeDeps: {
-			include: ['pinia', '@vueuse/core', 'dayjs']
+			include: include,
+			exclude: exclude
 		},
 		build: {
 			sourcemap: false,

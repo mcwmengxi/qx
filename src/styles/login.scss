@@ -6,12 +6,12 @@
 	z-index: -1;
 	width: 100%;
 	height: 100%;
-	background-image: url('../assets/images/bg/user-info-bg.png');
+	background-image: url('../assets/images/bg/yys-bg.svg');
 	background-repeat: repeat-y;
 	background-position: center center;
 	/* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
 	background-attachment: fixed;
-	background-size: contain;
+	background-size: cover;
 	background-color: #464646;
 	opacity: 0.9;
 	overflow: hidden;

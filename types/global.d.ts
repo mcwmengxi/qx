@@ -158,4 +158,28 @@ declare global {
       };
     };
   }
+
+  /**
+   * 与 `ServerConfigs` 类型不同，这里是缓存到浏览器本地存储的类型声明
+   */
+  interface StorageConfigs {
+    version?: string;
+    title?: string;
+    fixedHeader?: boolean;
+    hiddenSideBar?: boolean;
+    multiTagsCache?: boolean;
+    keepAlive?: boolean;
+    locale?: string;
+    layout?: string;
+    theme?: string;
+    darkMode?: boolean;
+    grey?: boolean;
+    weak?: boolean;
+    hideTabs?: boolean;
+    sidebarStatus?: boolean;
+    epThemeColor?: string;
+    showLogo?: boolean;
+    showModel?: string;
+    username?: string;
+  }
 }

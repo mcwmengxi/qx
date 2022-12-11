@@ -10,6 +10,12 @@ export interface StorageOpts {
 	/** 需要存储的响应式对象 */
 	memory: object
 }
+interface ProxyStorage {
+	getItem(key: string): any
+	setItem(Key: string, value: string): void
+	removeItem(key: string): void
+	clear(): void
+}
 
 export default class Storage {
 	static _nameSpace = 're_'
@@ -44,66 +50,72 @@ export default class Storage {
 		}
 	}
 
-	// public constructor(app: any, options: StorageOpts) {
-	//   const that = Storage;
-	//   const { version, nameSpace = that._nameSpace, memory } = options;
-	//   const _getKey = (key: string): string => nameSpace + key;
-
-	//   const _storage: any = version === 3 ? reactive(memory) : memory;
-	//   if (Object.keys(_storage).length === 0) console.warn("key cannot be empty");
-
-	//   Object.keys(_storage).forEach((key) => {
-	//     that.set(_getKey(key), _storage[key]);
-
-	//     Reflect.defineProperty(_storage, key, {
-	//       get() {
-	//         return that.get(_getKey(key));
-	//       },
-	//       set(v) {
-	//         that.set(_getKey(key), v);
-	//       },
-	//       configurable: true,
-	//     });
-
-	//     if (version === 2) app.util.defineReactive(_storage, key, _storage[key]);
-	//   });
-
-	//   const _target = version === 3 ? app.config.globalProperties : app.prototype;
-
-	//   Reflect.defineProperty(_target, "$storage", {
-	//     get: () => _storage,
-	//   });
-	// }
-
 	public constructor(app: any, options: StorageOpts) {
 		const that = Storage
 		const { version = 3, nameSpace = that._nameSpace, memory } = options
 		const _getKey = (key: string): string => nameSpace + key
 
-		/**
-		 * Vue2 uses defineReactive to create responsive storage
-		 * Vue3 uses reactive to create responsive storage
-		 */
 		const _storage: any = version === 3 ? reactive(memory) : memory
-
 		if (Object.keys(_storage).length === 0) console.warn('key cannot be empty')
-
 		Object.keys(_storage).forEach(key => {
-			const val = _storage[key]
-			that.set(_getKey(key), val)
+			that.set(_getKey(key), _storage[key])
 
 			Reflect.defineProperty(_storage, key, {
-				get: () => that.get(_getKey(key)),
-				set: val => that.set(_getKey(key), val),
+				get() {
+					return that.get(_getKey(key))
+				},
+				set(v) {
+					that.set(_getKey(key), v)
+				},
 				configurable: true
 			})
 
 			if (version === 2) app.util.defineReactive(_storage, key, _storage[key])
 		})
-
 		const _target = version === 3 ? app.config.globalProperties : app.prototype
+
 		Reflect.defineProperty(_target, '$storage', {
 			get: () => _storage
 		})
 	}
 }
+
+//sessionStorage operate
+class sessionStorageProxy implements ProxyStorage {
+	protected storage: ProxyStorage
+
+	constructor(storageModel: ProxyStorage) {
+		this.storage = storageModel
+	}
+
+	// 存
+	public setItem(key: string, value: any): void {
+		this.storage.setItem(key, JSON.stringify(value))
+	}
+
+	// 取
+	public getItem<T>(key: string): T {
+		return JSON.parse(this.storage.getItem(key))
+	}
+
+	// 删
+	public removeItem(key: string): void {
+		this.storage.removeItem(key)
+	}
+
+	// 清空
+	public clear(): void {
+		this.storage.clear()
+	}
+}
+
+//localStorage operate
+class localStorageProxy extends sessionStorageProxy implements ProxyStorage {
+	constructor(localStorage: ProxyStorage) {
+		super(localStorage)
+	}
+}
+
+export const storageSession = new sessionStorageProxy(sessionStorage)
+
+export const storageLocal = new localStorageProxy(localStorage)

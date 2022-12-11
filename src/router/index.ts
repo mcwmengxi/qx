@@ -1,13 +1,23 @@
-import { createRouter, createWebHashHistory, RouteComponent, Router } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteComponent, RouteMeta, Router, RouteRecordName } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import { sortRoutes, formatFlatteningRoutes, formatTwoStageRoutes, handleAliveRoute, isOneOfArray, initRouter } from './util'
+import {
+	sortRoutes,
+	formatFlatteningRoutes,
+	formatTwoStageRoutes,
+	handleAliveRoute,
+	isOneOfArray,
+	initRouter,
+	findRouteByPath
+} from './util'
 import { buildHierarchyTree } from '@/utils/tree'
 import NProgress from '@/plugins/nprogress'
 import remainingRouter from './modules/remaining'
 import { SessionKey, StorageSession } from '@/utils/auth'
 import { isUrl, openLink } from '@/utils/helper'
 import { getConfig } from '@/config'
-import permissionStore from '@/stores/modules/permission'
+import permissionStore, { usePermissionStoreHook } from '@/stores/modules/permission'
+import { useMultiTagsStore } from '@/stores/modules/multiTags'
+import { findIndex } from 'lodash-unified'
 /** 自动导入全部静态路由，无需再手动引入！匹配 src/router/modules 目录（任何嵌套级别）中具有 .ts 扩展名的所有文件，除了 remaining.ts 文件
  * 如何匹配所有文件请看：https://github.com/mrmlnc/fast-glob#basic-syntax
  * 如何排除文件请看：https://cn.vitejs.dev/guide/features.html#negative-patterns
@@ -78,7 +88,6 @@ router.beforeEach((to: toRouteType, form, next) => {
 	function toCorrectRoute() {
 		whiteList.includes(to.fullPath) ? next(form.fullPath) : next()
 	}
-	console.log('userInfo', userInfo, to.meta?.roles)
 	if (userInfo) {
 		// 无权限跳转403页面
 		if (to.meta?.roles && !isOneOfArray(to.meta?.roles, userInfo.roles)) {
@@ -96,11 +105,27 @@ router.beforeEach((to: toRouteType, form, next) => {
 			// 刷新
 			if ($permission.wholeMenus.length === 0 && to.path !== 'login') {
 				initRouter().then((router: Router) => {
+					if (!useMultiTagsStore().getMultiTagsCache) {
+						const handleTag = (path: string, parentPath?: string, name?: RouteRecordName, meta?: RouteMeta): void => {
+							useMultiTagsStore().handleTags('push', {
+								path,
+								parentPath,
+								name,
+								meta
+							})
+						}
+						const index = findIndex(remainingRouter, v => {
+							return v.path == to.path
+						})
+						const routes: any = index === -1 ? router.options.routes[0].children : router.options.routes
+						const route = findRouteByPath(to.path, routes)
+						// query、params模式路由传参数的标签页不在此处处理
+						handleTag(route.path, null, route.name, route.meta)
+					}
 					router.push(to.fullPath)
 				})
-				console.log('whiteList.includes(to.fullPath)', whiteList.includes(to.fullPath))
-				toCorrectRoute()
 			}
+			toCorrectRoute()
 		}
 	} else {
 		// debugger
@@ -119,8 +144,4 @@ router.beforeEach((to: toRouteType, form, next) => {
 router.afterEach(() => {
 	NProgress.done()
 })
-// export function isUrl(url) {
-//   const urlReg = `^((https|http|ftp|rtsp|mms)?://)(([0-9]{1,3}.){3}[0-9]{1,3}|([0-9a-z_!~*'()-]+.)*([0-9a-z][0-9a-z-]{0,61})?[0-9a-z].[a-z]{2,6})(:[0-9]{1,4})?((/?)|(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$`
-//   return new RegExp(urlReg).test(url)
-// }
 export default router

@@ -3,6 +3,7 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
+    // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
     "moduleResolution": "Node",
     "strict": false,
     "jsx": "preserve",
@@ -11,6 +12,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array"
     "lib": [
       "ESNext",
       "DOM"
@@ -30,7 +32,7 @@
       "@build/*": ["build/*"],
       // "/#/*": ["types/*"]
     },
-    // @types下的所有包会默认被引入
+    // @types下的所有包会默认被引入,npm的子分支/node_modules/@types，只有上传到npm才生效
     "types": [
       "node",
       "vite/client",
@@ -43,6 +45,9 @@
       "./types"
     ]
   },
+  // files - 表示编译需要编译的单个文件列表
+  "files": [],
+  // include - 设置需要进行编译的文件或目录，支持路径模式匹配
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
@@ -52,6 +57,7 @@
     "build/**/*.ts",
     "mock/*.ts",
   ],
+  // exclude - 设置无需进行编译的文件或文件夹，支持路径模式匹配,默认排除node_modules文件夹下文件
   "exclude": [
     "node_modules",
     "dist",

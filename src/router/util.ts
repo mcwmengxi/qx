@@ -16,6 +16,7 @@ import permissionStore, { usePermissionStoreHook } from '@/stores/modules/permis
 import { useTimeoutFn } from '@vueuse/core'
 import { getAsyncRoutes } from '@/api/routes'
 import router from '.'
+import { isProxy, toRaw } from 'vue'
 const IFrame = () => import('@/layout/frame.vue')
 
 // https://cn.vitejs.dev/guide/features.html#glob-import
@@ -250,6 +251,23 @@ function initRouter() {
 		})
 	}
 }
+/** 查找对应path的路由信息 */
+function findRouteByPath(path: string, routes: RouteRecordRaw[]) {
+	let res = routes.find((item: { path: string }) => item.path == path)
+	if (res) {
+		return isProxy(res) ? toRaw(res) : res
+	} else {
+		for (let i = 0; i < routes.length; i++) {
+			if (routes[i].children instanceof Array && routes[i].children.length > 0) {
+				res = findRouteByPath(path, routes[i].children)
+				if (res) {
+					return isProxy(res) ? toRaw(res) : res
+				}
+			}
+		}
+		return null
+	}
+}
 export {
 	getHistoryMode,
 	sortRoutes,
@@ -259,5 +277,6 @@ export {
 	filterNoPermissionTree,
 	handleAliveRoute,
 	isOneOfArray,
-	initRouter
+	initRouter,
+	findRouteByPath
 }
