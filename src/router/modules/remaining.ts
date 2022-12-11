@@ -28,6 +28,14 @@ export default [
 	// 	]
 	// },
 	{
+		path: '/test-layout',
+		component: () => import('@/views/TestElementPlus.vue'),
+		name: 'TestLayout',
+		meta: {
+			title: '测试Layout'
+		}
+	},
+	{
 		path: '/test',
 		component: () => import('@/views/TestElementPlus.vue'),
 		name: 'Test',
