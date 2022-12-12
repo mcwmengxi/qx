@@ -28,12 +28,22 @@ export default [
 	// 	]
 	// },
 	{
-		path: '/test-layout',
-		component: () => import('@/views/TestElementPlus.vue'),
-		name: 'TestLayout',
-		meta: {
-			title: '测试Layout'
-		}
+		path: '/layout',
+		component: Layout,
+		name: 'Layout',
+		redirect: '/layout/test',
+		children: [
+			{
+				path: 'test',
+				name: 'TestLayout',
+				component: () => import('@/views/TestLayout.vue'),
+				meta: {
+					title: '首页1',
+					showLink: false,
+					rank: 104
+				}
+			}
+		]
 	},
 	{
 		path: '/test',

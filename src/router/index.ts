@@ -117,10 +117,14 @@ router.beforeEach((to: toRouteType, form, next) => {
 						const index = findIndex(remainingRouter, v => {
 							return v.path == to.path
 						})
+
 						const routes: any = index === -1 ? router.options.routes[0].children : router.options.routes
 						const route = findRouteByPath(to.path, routes)
+						console.log(remainingRouter, to.path, route)
 						// query、params模式路由传参数的标签页不在此处处理
-						handleTag(route.path, null, route.name, route.meta)
+						if (route && route.meta?.title) {
+							handleTag(route.path, null, route.name, route.meta)
+						}
 					}
 					router.push(to.fullPath)
 				})
