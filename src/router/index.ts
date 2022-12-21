@@ -32,17 +32,22 @@ const routes = []
 Object.keys(modules).forEach(key => {
 	routes.push(modules[key].default)
 })
-console.log('原始静态路由', routes, formatTwoStageRoutes(formatFlatteningRoutes(buildHierarchyTree(sortRoutes(routes)))))
 
 /** 导出处理后的静态路由（三级及以上的路由全部拍成二级） */
 export const constantRoutes: Array<RouteRecordRaw> = formatTwoStageRoutes(formatFlatteningRoutes(buildHierarchyTree(sortRoutes(routes))))
+console.log(
+	'原始静态路由',
+	routes,
+	formatTwoStageRoutes(formatFlatteningRoutes(buildHierarchyTree(sortRoutes(routes)))),
+	constantRoutes.concat(...(remainingRouter as any))
+)
 
 /** 用于渲染菜单，保持原始层级 */
 export const constantMenus: Array<RouteComponent> = sortRoutes(routes).concat(...remainingRouter)
 
 const router: Router = createRouter({
 	history: createWebHashHistory(),
-	routes: constantRoutes.concat(...routes),
+	routes: constantRoutes.concat(...(remainingRouter as any)),
 	strict: true,
 	scrollBehavior(to, from, savedPosition) {
 		return new Promise(resolve => {
