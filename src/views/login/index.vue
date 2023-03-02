@@ -54,7 +54,7 @@
 						</Motion>
 						<Motion :delay="250">
 							<el-form-item>
-								<el-button class="w-full mt-4" size="default" type="primary" :loading="loading" @click="submitForm(loginFormRef)"
+								<el-button class="w-full mt-4 btn" size="default" type="primary" :loading="loading" @click="submitForm(loginFormRef)"
 									>登录</el-button
 								>
 								<el-button @click="resetForm(loginFormRef)">重置</el-button>
@@ -138,7 +138,12 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <style lang="scss" scoped>
 @import url('@/styles/login.scss');
-
+@import url('@/styles/variables.scss');
+.login-form {
+	.btn {
+		color: $bg-green;
+	}
+}
 #owl-login {
 	width: 211px;
 	height: 108px;

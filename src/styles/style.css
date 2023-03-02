@@ -79,3 +79,114 @@ button:focus-visible {
 		background-color: #f9f9f9;
 	}
 }
+
+.bg-f-purple{
+  width: 49px;
+  height: 17px;
+  display: inline-block;
+  text-align: center;
+  color: #5057EB;
+  background: #F0F0FF;
+  border-radius: 2px;
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  line-height: 17px;
+  border-radius: 2px;
+}
+.bg-f-orange{
+  width: 49px;
+  height: 17px;
+  display: inline-block;
+  text-align: center;
+  background: #FFF3E1;
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FB9400;
+  line-height: 17px;
+  border-radius: 2px;
+}
+.bg-f-red{
+  width: 49px;
+  height: 17px;
+  display: inline-block;
+  text-align: center;
+  background: #FFE8E8;
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FF2614;
+  line-height: 17px;
+  border-radius: 2px;
+}
+.bg-f-green{
+  width: 49px;
+  height: 17px;
+  display: inline-block;
+  text-align: center;
+  background: #D6F9E7;
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #04C160;
+  line-height: 17px;
+  border-radius: 2px;
+}
+.bg-f-gray{
+  width: 49px;
+  height: 17px;
+  display: inline-block;
+  text-align: center;
+  background: #EDEDED;
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #8D8E8E;
+  line-height: 17px;
+  border-radius: 2px;
+}
+.text-f12{
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  line-height: 17px;
+}
+.text-f14{
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  line-height: 20px;
+}
+.text-f14-w500{
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 500;
+  line-height: 20px;
+}
+.text-f16{
+  font-size: 16px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 400;
+  color: #121215;
+  line-height: 22px;
+}
+.text-f16-w500{
+  font-size: 16px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #121215;
+  line-height: 22px;
+}
+.text-gray-56{
+  color: #545456;
+}
+.text-gray-6c{
+  color: #6A6C6C;
+}
+.text-black{
+  color: #121215;
+}
+.bgc-ccc {
+  background-color: #ccc !important;
+}

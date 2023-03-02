@@ -37,7 +37,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 		css: {
 			preprocessorOptions: {
 				scss: {
-					additionalData: `@use "@/styles/elementplus/index.scss" as *;`
+					// 在组件中使用SCSS全局变量
+					additionalData: `@use "@/styles/elementplus/index.scss" as *;@use "@/styles/variables.scss" as *;`
 				}
 			}
 		},
