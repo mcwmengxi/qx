@@ -15,7 +15,13 @@ export function getPluginsList(command: string, VITE_LEGACY: boolean, VITE_CDN: 
 	const lifecycle = process.env.npm_lifecycle_event
 	// const lifecycle  = "report"
 	return [
-		vue(),
+		vue({
+			template: {
+				compilerOptions: {
+					isCustomElement: (tag) => tag.includes('qx-')
+				}
+			}
+		}),
 		viteMockServe({
 			// default
 			mockPath: 'mock',

@@ -54,6 +54,14 @@ export default [
 		}
 	},
 	{
+		path: '/canvas',
+		component: () => import('@/views/canvas/index.vue'),
+		name: 'CanvasCom',
+		meta: {
+			title: 'canvas测试'
+		}
+	},
+	{
 		path: '/guide',
 		component: () => import('@/views/guide/index.vue'),
 		name: 'Guide',

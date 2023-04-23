@@ -6,6 +6,7 @@ export default {
 
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
+import WebCom from '@/views/WebComponents/index.vue'
 import Horizontal from '@/layout/components/sidebar/horizontal.vue'
 const LayoutHeader = defineComponent({
 	name: 'LayoutHeader',
@@ -27,6 +28,7 @@ const LayoutHeader = defineComponent({
 			<div class="app-container">
 				<div>
 					<span>123</span>
+					<WebCom />
 					<LayoutHeader />
 					<router-view />
 				</div>

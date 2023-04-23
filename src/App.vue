@@ -14,10 +14,10 @@ onMounted(() => {
 			'content-type': 'application/json'
 		}
 	})
-		.then(response => {
+		.then((response) => {
 			return response.json()
 		})
-		.then(myJson => {
+		.then((myJson) => {
 			console.log(myJson)
 		})
 })

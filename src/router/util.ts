@@ -53,7 +53,7 @@ type orderType = 'ascending' | 'descending'
  * @param order 排序方式
  */
 function sortRoutes(routes: any[], order: orderType = 'ascending') {
-	routes.forEach(route => {
+	routes.forEach((route) => {
 		if (route?.meta?.rank === null) route.meta.rank = undefined
 		if (route?.meta?.rank === 0) {
 			if (route?.name !== 'Home' && route?.path !== '/') {
@@ -99,7 +99,7 @@ function formatTwoStageRoutes(routesList: RouteRecordRaw[]) {
 	if (routesList.length === 0) return routesList
 	const formatRoutes: RouteRecordRaw[] = []
 
-	routesList.forEach(route => {
+	routesList.forEach((route) => {
 		if (route.path === '/') {
 			formatRoutes.push({
 				component: route.component,
@@ -120,7 +120,7 @@ function formatTwoStageRoutes(routesList: RouteRecordRaw[]) {
 function handleAliveRoute(matched: RouteRecordNormalized[], mode?: string) {
 	switch (mode) {
 		case 'add':
-			matched.forEach(v => usePermissionStoreHook().cacheOperate({ mode: 'add', name: v.name }))
+			matched.forEach((v) => usePermissionStoreHook().cacheOperate({ mode: 'add', name: v.name }))
 			break
 		case 'delete':
 			usePermissionStoreHook().cacheOperate({ mode: 'delete', name: matched[matched.length - 1].name })
@@ -128,7 +128,7 @@ function handleAliveRoute(matched: RouteRecordNormalized[], mode?: string) {
 		default:
 			usePermissionStoreHook().cacheOperate({ mode: 'delete', name: matched[matched.length - 1].name })
 			useTimeoutFn(() => {
-				matched.forEach(v => usePermissionStoreHook().cacheOperate({ mode: 'add', name: v.name }))
+				matched.forEach((v) => usePermissionStoreHook().cacheOperate({ mode: 'add', name: v.name }))
 			}, 100)
 			break
 	}
@@ -179,8 +179,8 @@ function addAsyncRoutes(routes: Array<RouteRecordRaw>) {
 		} else {
 			// 对后端传component组件路径和不传做兼容（如果后端传component组件路径，那么path可以随便写，如果不传，component组件路径会跟path保持一致）
 			const index = v?.component
-				? modulesRoutesKeys.findIndex(ev => ev.includes(v.component as any))
-				: modulesRoutesKeys.findIndex(ev => ev.includes(v.path))
+				? modulesRoutesKeys.findIndex((ev) => ev.includes(v.component as any))
+				: modulesRoutesKeys.findIndex((ev) => ev.includes(v.path))
 			v.component = modulesRoutes[modulesRoutesKeys[index]]
 		}
 		if (v?.children && v.children.length) {
@@ -206,7 +206,7 @@ function handleAsyncRoutes(routeList) {
 	} else {
 		formatFlatteningRoutes(addAsyncRoutes(routeList)).map((v: RouteRecordRaw) => {
 			// 防止重复添加路由
-			if (router.options.routes[0].children.findIndex(value => value.path === v.path) !== -1) {
+			if (router.options.routes[0].children.findIndex((value) => value.path === v.path) !== -1) {
 				return
 			} else {
 				// 切记将路由push到routes后还需要使用addRoute，这样路由才能正常跳转
@@ -214,7 +214,7 @@ function handleAsyncRoutes(routeList) {
 				// 最终路由进行升序
 				sortRoutes(router.options.routes[0].children)
 				if (!router.hasRoute(v?.name)) router.addRoute(v)
-				const flattenRouters: any = router.getRoutes().find(n => n.path === '/')
+				const flattenRouters: any = router.getRoutes().find((n) => n.path === '/')
 				router.addRoute(flattenRouters)
 			}
 		})
@@ -229,12 +229,12 @@ function initRouter() {
 		const key = 'async-routes'
 		const asyncRouteList = StorageSession.getItem(key) as any
 		if (asyncRouteList && asyncRouteList?.length > 0) {
-			return new Promise(resolve => {
+			return new Promise((resolve) => {
 				handleAsyncRoutes(asyncRouteList)
 				resolve(router)
 			})
 		} else {
-			return new Promise(resolve => {
+			return new Promise((resolve) => {
 				getAsyncRoutes().then(({ data }) => {
 					handleAsyncRoutes(data)
 					StorageSession.setItem(key, data)
@@ -243,7 +243,7 @@ function initRouter() {
 			})
 		}
 	} else {
-		return new Promise(resolve => {
+		return new Promise((resolve) => {
 			getAsyncRoutes().then(({ data }) => {
 				handleAsyncRoutes(data)
 				resolve(router)
