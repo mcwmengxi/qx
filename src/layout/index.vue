@@ -27,7 +27,7 @@ const LayoutHeader = defineComponent({
 		<div class="app-mask">
 			<div class="app-container">
 				<div>
-					<span>123</span>
+					<span class="qx-test__wrapper--primary">123</span>
 					<WebCom />
 					<LayoutHeader />
 					<router-view />
@@ -37,4 +37,14 @@ const LayoutHeader = defineComponent({
 	</div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@include B(test) {
+	text-shadow: 1ch;
+	@include E(wrapper) {
+		background: plum;
+		@include M(primary) {
+			color: greenyellow;
+		}
+	}
+}
+</style>

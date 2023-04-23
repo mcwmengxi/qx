@@ -1,0 +1,40 @@
+$Namespace: 'qx' !default;
+$block-sel: '-' !default;
+$element-sel: '__' !default;
+$modify-sel: '--' !default;
+
+
+// 混入
+// <div class="qx-button--primary" />
+.qx-button--primary{
+  // == @content
+  display: inline-block;
+}
+@mixin B($block){
+  $B:#{$Namespace + $block-sel + $block};
+  .#{$B}{
+    // 占位符 slot
+    @content;
+  }
+}
+// <input class="el-input__inner" />
+@mixin E($el){
+  $selector: &;
+  @at-root{
+    #{$selector + $element-sel + $el}{
+      @content;
+    }
+  }
+}
+@mixin M($m){
+  $selector: &;
+  @at-root{
+    #{$selector + $modify-sel + $m}{
+      @content;
+    }
+  }
+}
+@mixin bfc{
+  height: 100%;
+  overflow: hidden;
+}
