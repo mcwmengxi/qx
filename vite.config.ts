@@ -52,6 +52,9 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 			// 本地跨域代理 https://cn.vitejs.dev/config/server-options.html#server-proxy
 			proxy: {}
 		},
+		esbuild: {
+			drop: ['console', 'debugger']
+		},
 		optimizeDeps: {
 			include: include,
 			exclude: exclude
